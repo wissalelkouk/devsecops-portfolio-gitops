@@ -7,7 +7,7 @@ resources:
   - tls.yaml
 images:
   - name: 172.19.145.50:30500/portfolio/api
-    digest: sha256:eee27649986720a3d47ef6606e3c1168b4db808662ab1fd1c946e5957f3f06b9
+    digest: sha256:c7fb1dfc1cb10950c14bdbc733b697df1cebda17a40386c654a8258207cdaf33
   - name: 172.19.145.50:30500/portfolio/frontend
     digest: sha256:12dc6e5513221740a05c4c6d838f294fdc655f33b80327d2088a05d153558bc9
 replicas:
