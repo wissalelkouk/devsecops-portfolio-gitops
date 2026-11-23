@@ -19,7 +19,7 @@ spec:
         - name: zot-pull
       containers:
         - name: api
-          image: 172.19.145.50:30500/portfolio/api:1.1@sha256:c7fb1dfc1cb10950c14bdbc733b697df1cebda17a40386c654a8258207cdaf33
+          image: 172.19.145.50:30500/portfolio/api
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true

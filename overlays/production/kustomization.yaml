@@ -1,0 +1,47 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: portfolio-production
+resources:
+  - ../../base
+  - ../../extras
+  - tls.yaml
+images:
+  - name: 172.19.145.50:30500/portfolio/api
+    digest: sha256:eee27649986720a3d47ef6606e3c1168b4db808662ab1fd1c946e5957f3f06b9
+  - name: 172.19.145.50:30500/portfolio/frontend
+    digest: sha256:12dc6e5513221740a05c4c6d838f294fdc655f33b80327d2088a05d153558bc9
+replicas:
+  - name: frontend
+    count: 3
+  - name: api
+    count: 3
+patches:
+  - target:
+      kind: ConfigMap
+      name: portfolio-config
+    patch: |-
+      - op: replace
+        path: /data/API_URL
+        value: "http://api.portfolio-production.svc.cluster.local:4000"
+      - op: replace
+        path: /data/CORS_ORIGIN
+        value: "https://production.portfolio.local"
+  - target:
+      kind: Service
+      name: frontend
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: ClusterIP
+      - op: remove
+        path: /spec/ports/0/nodePort
+  - target:
+      kind: Ingress
+      name: portfolio
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: production.portfolio.local
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: production.portfolio.local
