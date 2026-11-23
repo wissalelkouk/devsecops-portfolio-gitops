@@ -5,9 +5,9 @@ resources:
   - ../../base
 replicas:
   - name: frontend
-    count: 1
+    count: 2
   - name: api
-    count: 1
+    count: 2
 patches:
   - target:
       kind: ConfigMap
