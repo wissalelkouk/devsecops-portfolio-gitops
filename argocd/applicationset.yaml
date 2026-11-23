@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: portfolio
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - env: dev
+            namespace: portfolio
+          - env: staging
+            namespace: portfolio-staging
+          - env: production
+            namespace: portfolio-production
+  template:
+    metadata:
+      name: 'portfolio-{{.env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/wissalelkouk/devsecops-portfolio-gitops.git
+        targetRevision: main
+        path: 'overlays/{{.env}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
