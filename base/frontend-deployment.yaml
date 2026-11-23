@@ -19,7 +19,7 @@ spec:
         - name: zot-pull
       containers:
         - name: frontend
-          image: 172.19.145.50:30500/portfolio/frontend:1.0
+          image: 172.19.145.50:30500/portfolio/frontend:1.0@sha256:12dc6e5513221740a05c4c6d838f294fdc655f33b80327d2088a05d153558bc9
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true
