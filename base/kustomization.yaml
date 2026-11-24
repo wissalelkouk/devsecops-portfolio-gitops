@@ -6,3 +6,4 @@ resources:
   - services.yaml
   - configmap.yaml
   - ingress.yaml
+  - db-migration-job.yaml
