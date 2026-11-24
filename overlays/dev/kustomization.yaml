@@ -5,9 +5,9 @@ resources:
   - ../../base
 images:
   - name: 172.19.145.50:30500/portfolio/api
-    digest: sha256:950b7978b834f586a2274d4f5ec70c76f7476a134b6581c1d424745855b2b3f2
+    digest: sha256:6ead5cae7cd0f3a9b800a04e9e95b716909402c9a4258c682f718e01c1ab388c
   - name: 172.19.145.50:30500/portfolio/frontend
-    digest: sha256:58d08a4172077f943ef04b8fc0a4b933fc3e3d0ea2543b02815b0e72a0c7d51a
+    digest: sha256:f3f6a677781678dde6969589ddbe2fa7a062883931e7517e35acef508defaee9
 replicas:
   - name: frontend
     count: 1
